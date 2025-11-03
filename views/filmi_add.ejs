@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="et">
+<head><meta charset="utf-8"><title>Lisa film</title></head>
+<body>
+  <h1>Lisa film</h1>
+  <form method="POST">
+    <label>Pealkiri</label><input name="titleInput" required><br>
+    <label>Aasta</label><input name="yearInput" type="number"><br>
+    <label>Kirjeldus</label><textarea name="descriptionInput"></textarea><br>
+    <input type="submit" value="Salvesta">
+  </form>
+  <p><%= notice %></p>
+</body>
+</html>

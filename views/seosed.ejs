@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="et">
+<head><meta charset="utf-8"><title>Seosed</title></head>
+<body>
+  <h1>Seosed</h1>
+  <ul>
+    <% relations.forEach(function(r){ %>
+      <li><%= r.first_name %> <%= r.last_name %> — <strong><%= r.film_title %></strong> — <%= r.position_name %> <% if(r.role) { %> (roll: <%= r.role %>) <% } %></li>
+    <% }); %>
+  </ul>
+</body>
+</html>

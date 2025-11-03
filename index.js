@@ -6,7 +6,7 @@ const bodyparser = require("body-parser");
 //const mysql = require("mysql2/promise");
 //lisan andmebaasi juurdepääsuinfo
 //const dbinfo = require("../../../vp2025config");
-const dateEt = require("./src/dateTimeET");
+const dateTimeET = require("./src/dateTimeET");
 //me loome objekti, mis ongi express.js programm ja edasi kasutamegi seda
 const app = express();
 //mأ¤أ¤rame renderdajaks ejs
@@ -37,7 +37,7 @@ app.get("/", (req, res)=>{
 });
 
 app.get("/timenow", (req, res)=>{
-	res.render("timenow", {nowDate: dateEt.longDate(), nowWd: dateEt.weekday()});
+	res.render("timenow", {nowDate: dateTimeET.longDate(), nowWd: dateTimeET.weekday()});
 });
 
 app.get("/vanasonad", (req, res)=>{
@@ -52,11 +52,11 @@ app.get("/vanasonad", (req, res)=>{
 	
 });
 
-app.get("/regvisit", (req, res)=>{
+/* app.get("/regvisit", (req, res)=>{
 	res.render("regvisit");
-});
+}); */
 
-app.post("/regvisit", (req, res)=>{
+/* app.post("/regvisit", (req, res)=>{
 	console.log(req.body);
 	//avan tekstifaili kirjutamiseks sellisel moel, et kui teda pole, luuakse (parameeter "a")
 	fs.open("public/txt/visitlog.txt", "a", (err, file)=>{
@@ -93,7 +93,7 @@ app.get("/visitlog", (req, res)=>{
 			res.render("genericlist", {heading: "Registreeritud kأ¼lastused", listData: listData});
 		}
 	});
-});
+}); */
 
 /* app.get("/eestifilm", (req, res)=>{
 	res.render("eestifilm");
@@ -242,7 +242,16 @@ app.post("/eestifilm/ametid_add", (req, res)=>{
 }); */
 
 //Eesti filmi marsruudid
+//const eestifilmRouter = require("./routes/eestifilmRoutes");
+//app.use("/eestifilm", eestifilmRouter);
+
 const eestifilmRouter = require("./routes/eestifilmRoutes");
 app.use("/eestifilm", eestifilmRouter);
+
+const visitsRouter = require("./routes/visitsRoutes");
+app.use("/visits", visitsRouter);
+
+app.get("/regvisit", (req, res) => res.redirect("/visits"));
+app.get("/visitlog", (req, res) => res.redirect("/visits/log"));
 
 app.listen(5220);

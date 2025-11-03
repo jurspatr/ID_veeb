@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="et">
+<head><meta charset="utf-8"><title>Lisa seos</title></head>
+<body>
+  <h1>Lisa seos (isik - film - amet)</h1>
+  <form method="POST">
+    <label for="personSelect">Isik</label>
+    <select id="personSelect" name="personSelect" required>
+      <option selected disabled>Vali isik</option>
+      <% people.forEach(function(p){ %>
+        <option value="<%= p.id %>"><%= p.first_name %> <%= p.last_name %></option>
+      <% }); %>
+    </select><br>
+
+    <label for="filmSelect">Film</label>
+    <select id="filmSelect" name="filmSelect" required>
+      <option selected disabled>Vali film</option>
+      <% films.forEach(function(f){ %>
+        <option value="<%= f.id %>"><%= f.title %></option>
+      <% }); %>
+    </select><br>
+
+    <label for="positionSelect">Amet</label>
+    <select id="positionSelect" name="positionSelect" required>
+      <option selected disabled>Vali amet</option>
+      <% positions.forEach(function(pos){ %>
+        <option value="<%= pos.id %>"><%= pos.position_name %></option>
+      <% }); %>
+    </select><br>
+
+    <label for="roleInput">Roll (näitleja korral)</label>
+    <input id="roleInput" name="roleInput" type="text"><br>
+
+    <input type="submit" value="Salvesta seos">
+  </form>
+  <p><%= notice %></p>
+</body>
+</html>
