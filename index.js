@@ -14,7 +14,8 @@ app.set("view engine", "ejs");
 //mأ¤أ¤rame kasutamiseks "avaliku" kataloogi
 app.use(express.static("public"));
 //pأ¤ringu URL-i parsimine, eraldame POST osa. False, kui ainuylt tekst, true. kui muud infot ka
-app.use(bodyparser.urlencoded({extended: false}));
+//kui vormist tuleb ainult text siis false muidu true
+app.use(bodyparser.urlencoded({extended: true}));
 
 //loon andmeaasi ühenduse
 /* const conn = mysql.createConnection({
@@ -250,6 +251,10 @@ app.use("/eestifilm", eestifilmRouter);
 
 const visitsRouter = require("./routes/visitsRoutes");
 app.use("/visits", visitsRouter);
+
+//piltide üleslaadimiseks marsruudid
+const galleryphotoupRouter = require("./routes/galleryphotoupRoutes");
+app.use("/galleryphotoupload", galleryphotoupRouter);
 
 app.get("/regvisit", (req, res) => res.redirect("/visits"));
 app.get("/visitlog", (req, res) => res.redirect("/visits/log"));
